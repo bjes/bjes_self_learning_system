@@ -13,6 +13,7 @@
 
     <Button
         android:id="@+id/btn_student_login"
+        android:drawableTop="@drawable/social_person"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/student_login" />
@@ -24,6 +25,7 @@
 
     <Button
         android:id="@+id/btn_dev_team"
+        android:drawableTop="@drawable/action_about"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/dev_team" />
