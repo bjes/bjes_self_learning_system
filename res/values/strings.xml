@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">濱江國小自學系統</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">設定</string>
     <string name="dev_team">研發團隊</string>
     <string name="student_login">登入數位學生證</string>
     <string name="scan">掃描 QR Code</string>
