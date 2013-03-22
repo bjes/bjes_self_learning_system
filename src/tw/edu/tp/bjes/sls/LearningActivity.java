@@ -13,6 +13,8 @@ import android.widget.Button;
 
 public class LearningActivity extends Activity {
     private WebView web_view;
+    private String current_url;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +52,21 @@ public class LearningActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
-                String contents = data.getStringExtra("SCAN_RESULT");
-                web_view.loadUrl(contents);
+                current_url = data.getStringExtra("SCAN_RESULT");
+                web_view.loadUrl(current_url);
             }
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        web_view.loadUrl("");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        web_view.loadUrl(current_url);
     }
 }
