@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class MainActivity extends Activity {
     private String scan_result;
@@ -16,9 +18,13 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        // find views
+        // start learning button
         Button btn_student_login = (Button) findViewById(R.id.btn_student_login);
         btn_student_login.setOnClickListener(startScanner);
+
+        // about dev team button
+        Button btn_dev_team = (Button) findViewById(R.id.btn_dev_team);
+        btn_dev_team.setOnClickListener(showDevTeam);
     }
 
     private OnClickListener startScanner = new OnClickListener() {
@@ -30,6 +36,22 @@ public class MainActivity extends Activity {
         }
     };
     
+    private OnClickListener showDevTeam = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            new AlertDialog.Builder(MainActivity.this)
+            .setTitle(R.string.dev_team)
+            .setMessage(R.string.dev_team_msg)
+            .setPositiveButton("確認", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialoginterface, int i) {
+                    // nothing need to do
+                }
+            })
+            .show();
+        }
+    };
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0) {
