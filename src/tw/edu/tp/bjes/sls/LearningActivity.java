@@ -61,12 +61,12 @@ public class LearningActivity extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-        web_view.loadUrl("");
+        web_view.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        web_view.loadUrl(current_url);
+        web_view.onResume();
     }
 }
