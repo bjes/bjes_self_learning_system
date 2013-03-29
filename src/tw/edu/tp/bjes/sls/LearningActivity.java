@@ -3,6 +3,7 @@ package tw.edu.tp.bjes.sls;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.view.Window;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
@@ -18,6 +19,7 @@ public class LearningActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getWindow().requestFeature(Window.FEATURE_PROGRESS);
         setContentView(R.layout.activity_learning);
 
         // scan button
@@ -34,7 +36,12 @@ public class LearningActivity extends Activity {
         web_settings.setAllowFileAccess(true);
         web_settings.setBuiltInZoomControls(true);
         web_settings.setSupportMultipleWindows(true);
-        web_view.setWebChromeClient(new WebChromeClient());
+        web_view.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public  void onProgressChanged(WebView view, int progress) {
+                LearningActivity.this.setProgress(progress * 100);
+            }
+        });
         web_view.setWebViewClient(new WebViewClient());
         web_view.loadUrl(scan_result);
     }
