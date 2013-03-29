@@ -1,5 +1,6 @@
 package tw.edu.tp.bjes.sls;
 
+import java.util.List;
 import android.os.Bundle;
 import android.app.Activity;
 //import android.view.Menu;
@@ -7,8 +8,11 @@ import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 
 public class MainActivity extends Activity {
     private String scan_result;
@@ -32,7 +36,12 @@ public class MainActivity extends Activity {
         public void onClick(View v) {
             Intent intent = new Intent("com.google.zxing.client.android.SCAN");
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
-            startActivityForResult(intent, 0);
+            if (isCallable(intent) == true) {
+                startActivityForResult(intent, 0);
+            } else {
+                Toast.makeText(MainActivity.this, R.string.dependency_warning, Toast.LENGTH_SHORT).show();
+                intent = null;
+            }
         }
     };
     
@@ -65,6 +74,11 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         }
+    }
+
+    private boolean isCallable(Intent intent) {
+        List<ResolveInfo> list = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        return list.size() > 0;
     }
 
     /* 目前我們不需要設定選單

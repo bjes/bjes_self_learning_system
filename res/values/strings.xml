@@ -7,6 +7,7 @@
     <string name="dev_team_msg">Ethan Lin\nCandy Ho\nKaren Huang\nJaye Cho\nPing Chen\nJack Hsueh\nShirley Hung\nCamilla Lin\nAnderson Chen\nWilliam Wu</string>
     <string name="student_login">Student Login</string>
     <string name="scan">Scan QR Code</string>
+    <string name="dependency_warning">Please install Barcode Scanner first.</string>
     <string name="copyright">Copyright \u00A9 2013 Taipei Municipal Bin Jiang Elementary School</string>
 
 </resources>
